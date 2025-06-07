@@ -1,4 +1,10 @@
-```yml
+# Glance Dashboard Setup & Configuration
+
+## Docker Compose Service
+
+This configuration runs the Glance app as a Docker container:
+
+```yaml
 services:
   glance:
     container_name: glance
@@ -8,13 +14,25 @@ services:
       - /root/docker/glance/config:/app/config
     ports:
       - 8980:8080
-```      
+```
 
-glance config
+* **container\_name**: `glance`
+* **image**: `glanceapp/glance` (official Glance Docker image)
+* **restart**: `unless-stopped` (auto-restarts unless manually stopped)
+* **volumes**: Mounts local config directory `/root/docker/glance/config` into container at `/app/config`
+* **ports**: Maps host port `8980` to container port `8080`
+
+---
+
+## Editing Glance Configuration
+
+To customize your Glance dashboard, edit the `glance.yml` config file:
+
 ```bash
 cd /root/docker/glance/config
 nano glance.yml
 ```
+
 
 ```yml
 pages:
